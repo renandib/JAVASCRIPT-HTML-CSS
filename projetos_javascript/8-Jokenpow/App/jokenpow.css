@@ -1,0 +1,61 @@
+body{
+    background-image: url("img/fundo1.jpeg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    font: normal 15pt Arial;
+    
+}
+
+header{
+    margin-top: auto;
+    color: white;
+    text-align: center;
+}
+
+section{
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    width: 500px;
+    margin: auto;
+    margin-top: -20px;
+    height: 640px;
+    box-shadow: 3px 3px 10px rgb(1, 1, 32);
+}
+
+footer {
+    color: white;
+    text-align: center;
+    font-style: italic;
+    margin-top: -20px;
+}
+
+div {
+    text-align: center;
+    padding: 10px;
+    margin-top: -45px;
+    
+}
+
+#resp {
+    color: red;
+    font-weight: bolder;
+    margin-top: 2px;
+    
+    
+}
+#botao{
+    padding: 10px;
+}
+
+div#resp{
+    
+    color: black;
+
+}
+
+div#ok{
+    margin-top: -30px;
+}

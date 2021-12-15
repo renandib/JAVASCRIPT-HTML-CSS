@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">  <!--link dos emojis > https://unicode.org/emoji/charts/full-emoji-list.html-->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONTAGEM REGRESSIVA</title>
+    <link rel="stylesheet" href="contagem.css">
+
+<!-- LINK DO YOUTUBE --  https://www.youtube.com/watch?v=PA9wDcHNbwA&list=PLOqx8yEV2-l3ZtNu48bpcnUn_wqCuzmtp&index=3 -->
+</head>
+<body>
+    <header>
+        <h1>CONTAGEM REGRESSIVA</h1>
+    </header>
+
+    <section>
+        <div>
+            <p><strong> Inicio :</strong>  
+            <input type="number" id="inicio" placeholder="Digite o valor inicial" min="0">
+            </p>
+            
+            <p><strong>Final : </strong>
+            <input type="number" id="final"  placeholder="Digite o valor final" min="0">
+            </p>
+
+            <p><strong>Passos :</strong>
+            <input type="number" id="passos" placeholder="Digite em quais passos será a contagem " min="0">
+            </p>
+
+            <p>
+            <input type="button" id="botao" value="Começar" style="width: 80px;height: 40px;font-weight: bolder;background-color: cornflowerblue;" >
+            </p>
+        </div>
+
+        <div id="resp">
+        <p><strong>Preparando a contagem </strong></p>
+        <img src="img/contagem.jpg">    
+        </div>
+    </section>
+
+    <footer><br>&copy; CURSO DE JAVASCRIPT </footer>
+
+    <script> 
+        window.addEventListener('load',comeca)
+        function comeca(){  
+            let botao = document.querySelector("#botao")  // SELECIONANDO O BOTAO 
+            botao.addEventListener('click',contar) // VAI COMEÇAR TUDO AQUI 
+
+            function contar(){
+                let inicio = document.querySelector("#inicio").value // lembrando q aqui mesmo do tipo number > sai string entao tenq converter
+                
+                let fim = document.querySelector("#final").value
+                
+                let passos =document.querySelector("#passos").value
+                
+                let resp = document.querySelector("#resp")  // resposta da div 
+            
+            // 1° vamos verificar se o valor digitado é valido ou n.. se for invalido da um ALERT se n for começa o programa 
+                // se a pessoa n digitar nada na caixa 
+                if(inicio.length == 0 || fim.length == 0  || passos.length == 0){  // poderia ser tbm > inicio.value.length
+                    window.alert("Você digitou um n ° invalido! Digite novamente")
+                }
+                else{ // começando o programa e criando variaveis pra receber os input q eu selecionei la encima
+                    resp.innerHTML = "Começando >> "
+                    let inicio2 = Number(inicio) // convertendo o valor pra number > poderia ser assim tbm > Number(inicio.value)
+                    let fim2 = Number(fim)
+                    let passos2 = Number(passos)  // passos q serão dados
+
+                    // OBS > O PASSOS N PODE SER = 0 OU MENOR Q ZERO > SE NAO O FOR N FUNCIONA ENTAO EU TENHO Q TRANSFORMAR ESSE PASSO = 0 EM 1 PRA CONTINUAR O PROGRAMA
+
+                    if(passos2<=0){
+                        alert("Você digitou o n° de passos invalido. Por isso vou transformar ele em 1 para continuar o programa")
+                        passos2=1
+                    }
+
+                    // FAZENDO O FOR AGORA PARA PERCORRER OS NUMEROS > da pra fazer com while tbm mas da mais trabalho
+
+                    // PRIMEIRO TEMOS Q ENTENDER Q ESSA CONTAGEM PODE SER DO MENOR PRO MAIOR OU O CONTRARIO ENTAO TEMOS Q FAZER UM IF PRAS DUAS CONDICOES
+
+                    if(inicio2 < fim2){  // CONTAGEM DO MENOR PARA O MAIOR 
+                    for(let c=inicio2 ; c<=fim2 ; c+= passos2){
+                        resp.innerHTML+= ` ${c} \u{1F60E} ` // LEMBRANDO Q ESSE COD EU PEGUEI LA ENCIMA NO SITE > ELE VEM>  U + 1F973 > PRA FUNCIONAR TENQ MUDAR ELE E DEIXAR ASSIM > [ \u{1F973} ]
+                    }
+                    resp.innerHTML+= ` \u{1F973}`  // final da contagem 
+                    }
+
+                    else{  // fazendo a contagem do MAIOR PARA O MENOR  > (inicio2 > fim2)
+                        for(let c=inicio2 ; c>=fim2 ; c-= passos2){ // OBS Q AQUI MUDOU O C>FIM2  E TBM C-= PASSOS2 
+                        resp.innerHTML+= ` ${c} \u{1F60E} ` // LEMBRANDO Q ESSE COD EU PEGUEI LA ENCIMA NO SITE > ELE VEM>  U + 1F973 > PRA FUNCIONAR TENQ MUDAR ELE E DEIXAR ASSIM > [ \u{1F973} ]
+                    }
+                    resp.innerHTML+= ` \u{1F973}`  // final da contagem
+
+                    }
+ 
+                }
+            }
+        }   
+
+                
+    </script>
+</body>
+</html>

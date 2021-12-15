@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VERIFICADOR DE IDADES </title>
+    <link rel="stylesheet" href="idade.css">
+
+    <!--
+        LINK DO YOUTUBE --  https://www.youtube.com/watch?v=L214nAvGsZ0&list=PLOqx8yEV2-l3ZtNu48bpcnUn_wqCuzmtp&index=2 
+    -->
+</head>
+<body>
+    <header>
+        <h1> VERIFICADOR DE IDADES </h1>
+    </header>
+    <section>
+        <div>
+            <p><strong>Digite seu ano de nascimento: </strong>
+                <input type="number" id="idade" placeholder="0000"   min="0">
+            </p>
+            <p><strong>Sexo: </strong>
+                <input type="radio" name="radiosex" id="sexo1" checked>  <!-- obs os dois botao radio tem o mesmo Name só muda o id > pq se nao a bolinha fica marcada nas duas caixas.. e só pode ficar em uma -->
+                <label for="mas"> Masculino </label>
+                <input type="radio" name="radiosex" id="sexo2">
+                <label for="fem"> Feminino </label>
+            </p>
+        <p>
+            <input type="button" id="ok" value="Verificar" style="background-color: cornflowerblue;font-size: 20px;">
+        </p> 
+        </div>
+        <div id="resp"> <strong>CLIQUE NO BOTÃO PARA VERIFICAR SUA IDADE </strong> 
+        </div> 
+        <div id="resp2">
+            <img id="img" src="img/homem.png">
+            
+        </div>
+        </section>
+        <footer>
+            <p>&copy;CURSO DE JAVASCRIPT </p>
+        </footer>
+
+    <script>  // LEMBRANDO Q EU POSSO FAZER UM ARQUIVO A PARTE > MAS PREFIRO FAZER AQUI.. 
+        window.addEventListener('load',comeca)  // SEMPRE QUANDO COMEÇA UMA FUNCAO FAZER ISSO
+        function comeca(){
+
+            let botao = document.querySelector("#ok")
+            botao.addEventListener('click',verificar)
+
+            function verificar(){
+                let data = new Date() // PEGA A DATA ATUAL DO SISTEMA  > METODO 
+                let ano = data.getFullYear()  // PEGA O ANO ATUAL ATRAVES DA DATA 
+                let mes = data.getMonth() // pega o mês do sistema
+                mes += 1 // LEMBRANDO Q O SISTEMA CONTA O MES DE 0 ATÉ 11 ==> ENTAO EU PRECISO INCREMENTAR + 1 pra fechar 12 meses
+                let inputAno = document.querySelector("#idade")  // PEGANDO O INPUT DIGITADO DO ANO 
+
+                let resposta = document.querySelector("#resp")  // PEGANDO A DIV RESPOSTA 
+
+                // VERIFICANDO SE O VALOR DIGITADO NO INPUT É VALIDO OU N > SE ACONTECER ISSO ELE VAI DAR UM ALERTA AVISANDO PRA DIGITAR NOVAMENTE !
+                if(inputAno.value.length==0 || inputAno.value > ano || inputAno.value<1900) {    // 1° VAI PERCORRER TODO INPUT E VER SE É IGUAL A 0 / 2° VAI VER SE O ANO Q FOI DIGITADO É MAIOR Q O ANO ATUAL 
+                    alert("Você digitou um ano não valido! Digite novamente ")
+
+                    
+                        
+
+                }   
+                // CASO A PESSOA DIGITAR O ANO ATUAL (vai apenas dizer os meses que a pessoa possui)
+                else if (inputAno.value = ano ){
+                        
+                        resp.innerHTML = `Você possui ${mes} meses ! `
+                        img.src = "img/crianca.png"
+                    }
+                
+                
+                // se der tudo ok > começa o programa a partir daqui do else 
+                
+                else{
+                    //PEGANDO OS DOIS INPUT RADIO > TENHO Q FAZER PELA TAGNAME > OS DOIS TENQ TER O MESMO NOME POREM ID DIFERENTE> PQ SE EU SELECIONAR UM D CADA, QUANDO É SÓ UMA OPCAO PODE DAR ERRO
+                let sexo = document.getElementsByName("radiosex")  // LEMBRANDO Q ESSE RADIO É 2 BOLINHA COM SOMENTE UMA OPCAO Q PODE FICAR MARCADA
+                let genero = " "  // O VALOR Q SAIR NE UMA DESSAS BOLINHAS EU TENHO Q COLOCAR NUMA VARIAVEL USANDO O METODO > SEXO[0].CHECKED > 1° BOLINHA /  SEXO[1].CHECKED> 2° BOLINHA
+                
+                let conta = ano - Number(inputAno.value) // FAZENDO A CONTA PRA IDADE E TRANSFORMANDO O INPUT EM UM NUMERO > NUMBER
+
+                    if(sexo[0].checked){   // DENTRO DESSA MESMA VERIFICACAO > VOU VERIFICAR TBM A IDADE ABAIXO EM OUTRO IF 
+                        genero = "Masculino"
+                        if(conta<10){       // CRIANÇA 
+                        resp.innerHTML=`Você tem ${conta} anos ! e seu sexo é: ${genero} `  // DANDO A RESPOSTA DOS DOIS > SEXO E IDADE 
+                        img.src = "img/crianca.png"  // lembrando q eu fiz essa img na div > porem poderia fazer aqui DESSE JEITO ABAIXO  
+                        }                        // CRIANDO UMA IMG POR AQUI > IMG.SETATTRIBUTE ("ID" , "FOTO")
+                                                // NO LUGAR DE IMG.SRC COLOCARIA > IMG.SETATTRIBUTE ('SRC' , 'NOMEDAIMAGEM.JPG') > LEMBRNADO Q SE EU N TIVESSE FEITO ISSO ANTES NA DIV.. FAZENDO AQUI SERIA ASSIM 
+                                                // APOS FAZER ISSO EU TERIA Q COLOCAR > RESPOSTA.APPENDCHILD(IMG) > PRA ADD A IMAGEM 
+                        else if(conta<=30 ){     // JOVEM
+                        resp.innerHTML=`Você tem ${conta} anos ! e seu sexo é: ${genero} `  // DANDO A RESPOSTA DOS DOIS > SEXO E IDADE 
+                        img.src = "img/jovemh.png"  // ADICIONANDO A IMAGEM ATRAVES DO METODO >VARIAVEL.SRC
+                        }
+                        else if(conta<=50 ){    // ADULTO
+                        resp.innerHTML=`Você tem ${conta} anos ! e seu sexo é: ${genero} `
+                        img.src = "img/homem.png"
+                    
+                        }
+                        else{       // IDOSO
+                        resp.innerHTML=`Você tem ${conta} anos ! e seu sexo é: ${genero} `
+                        img.src = "img/velho.png"
+                        }
+                    }
+                    
+                    else if(sexo[1].checked){
+                        genero = "Feminino"
+                        
+                        if(conta<10){
+                        resp.innerHTML=`Você tem ${conta} anos ! e seu sexo é: ${genero} `  // DANDO A RESPOSTA DOS DOIS > SEXO E IDADE 
+                        img.src = "img/crianca.png"    
+                        }
+                        else if(conta<=30 ){
+                
+                        resp.innerHTML=`Você tem ${conta} anos ! e seu sexo é: ${genero} `
+                        img.src = "img/jovemm.png"
+                        }
+                        else if(conta<=50){
+                
+                        resp.innerHTML=`Você tem ${conta} anos ! e seu sexo é: ${genero} `
+                        img.src = "img/mulher.png"
+                    
+                        }
+                        else{
+                        resp.innerHTML=`Você tem ${conta} anos ! e seu sexo é: ${genero} `
+                        img.src = "img/velha.png"
+                        }
+                    }
+                    
+                    
+
+            }
+            
+            
+            
+                
+                
+        }
+    }
+
+    </script>
+</body>
+</html>

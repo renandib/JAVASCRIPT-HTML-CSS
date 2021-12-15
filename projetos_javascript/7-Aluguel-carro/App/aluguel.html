@@ -1,0 +1,154 @@
+<!DOCTYPE html>  
+<html lang="pt-br"> <!--MELHOR VIDEO DE SELECT https://www.youtube.com/watch?v=biCFxnXrQQc-->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>  ESCOLHA SEU CARRO </title>
+    <link rel="stylesheet" href="aluguel.css">
+
+    <!-- LINK DO YOUTUBE https://www.youtube.com/watch?v=-uCm9KzgDh0&list=PLOqx8yEV2-l3ZtNu48bpcnUn_wqCuzmtp&index=8  -->
+</head>
+<body>
+    <header>
+        <h1> ALUGUE SEU CARRO  </h1>
+    </header>
+
+    <section>
+        <div>
+            <p><strong>N° de dias :</strong>
+            <input type="number" id="dias" placeholder=" Digite o n° de dias alugados ">
+            <input type="button" id="botao" value=" Buscar " style="width: 80px;height: 40px;font-weight: bolder;background-color: cornflowerblue;" >
+            </p>
+
+            <p><strong>Selecione a marca do veiculo : </strong><br>
+            <input id="op1" type="radio" name="opcao" value="fiat"> Fiat     <!-- OBS TENQ TER O MESMO NAME SE N ELE SELECIONA MAIS DE UMA AO MEMSO TEMPO-->
+            <input id="op2"  type="radio" name="opcao" value="ford"> Ford
+            <input id="op3"  type="radio" name="opcao" value="chevrolet"> Chevrolet
+            <input id="op4"  type="radio" name="opcao" value="honda"> Honda
+            </p>
+
+            <p><strong>Selecione a categoria do veiculo : </strong><br>
+            <input id="op5" type="radio" name="sedan" value="Sedans"> Sedans
+            <input id="op6" type="radio" name="sedan" value="suv"> Suvs
+            <input id="op7" type="radio" name="sedan" value="hatches"> Hatches 
+            
+            </p>
+            
+                      
+        </div>
+            
+        <div id="ok">
+            <img src="img/tabela.png">
+            <img id="img" src="img/aluguel.png" style="border-radius: 10px 10px 10px 10px;"> 
+            <p id="resp"> Descubra os detalhes ao clicar em Buscar : </p>    
+        </div>
+        
+    </section>
+
+    <footer><br>&copy; CURSO DE JAVASCRIPT </footer>
+    <script>
+       window.addEventListener('load',comeca)
+            function comeca(){
+                let bot = document.querySelector("#botao")
+                bot.addEventListener('click',ver)
+                    function ver(){
+
+                    let op1 =document.querySelector("#op1")
+
+                    let op5 =document.querySelector("#op5")
+
+                    let resp = document.querySelector("#resp")
+
+                    let img = document.querySelector("#img")
+
+                    let dias = document.querySelector("#dias")
+
+                    let dias2 = Number(dias.value)
+
+                    let conta = (dias2*200) //sedan 
+
+                    let conta2 = (dias2*300) // suvs
+
+                    let conta3= (dias2*100) // hatchs
+
+
+                    if(op1.checked==true && dias2>0 && op5.checked==true){
+                        resp.innerHTML=` FIAT CRONOS / MOTOR: 1.3 FLEX / ANO : 2020 / CONSUMO : 12 KM/L / CAMBIO: MANUAL / AR+DIR+VID <br> `
+                        img.src = "img/sedan.png"
+                        resp.innerHTML += `(O valor da sua diaria é: [200.00] R$ ).<br> Portanto sua conta final será : [${conta}.00] R$ `
+                    }
+                    else if(op2.checked==true && op5.checked==true && dias2>0){
+                        resp.innerHTML=` FORD KA / MOTOR: 1.5 FLEX / ANO : 2020 / CONSUMO : 11 KM/L / CAMBIO: MANUAL / AR+DIR+VID <br> `
+                        img.src = "img/sedan2.png"
+                        resp.innerHTML += `(O valor da sua diaria é: [200.00] R$ ).<br> Portanto sua conta final será : [${conta}.00] R$ `
+                        
+                    }
+                    else if(op3.checked==true && op5.checked==true && dias2>0){
+                        resp.innerHTML=` PRISMA / MOTOR: 1.4 FLEX / ANO : 2020 / CONSUMO : 11.5 KM/L / CAMBIO: MANUAL / AR+DIR+VID <br> `
+                        img.src = "img/sedan3.png"
+                        resp.innerHTML += `(O valor da sua diaria é: [200.00] R$ ).<br> Portanto sua conta final será : [${conta}.00] R$ `
+                    }
+                    else if(op4.checked==true && op5.checked==true && dias2>0){
+                        resp.innerHTML=` CITY / MOTOR: 1.5 FLEX / ANO : 2020 / CONSUMO : 11 KM/L / CAMBIO: MANUAL / AR+DIR+VID <br> `
+                        img.src = "img/sedan4.png"
+                        resp.innerHTML += `(O valor da sua diaria é: [200.00] R$ ).<br> Portanto sua conta final será : [${conta}.00] R$ `
+                    }
+                    // suvs agora
+                    else if(op1.checked==true && op6.checked==true && dias2>0){
+                        resp.innerHTML=` COMPASS / MOTOR: 1.7 FLEX / ANO : 2020 / CONSUMO : 9 KM/L / CAMBIO: AUTO / AR+DIR+VID <br> `
+                        img.src = "img/suv1.png"
+                        resp.innerHTML += `(O valor da sua diaria é: [300.00] R$ ).<br> Portanto sua conta final será : [${conta2}.00] R$ `
+                    
+                    }
+                    else if(op2.checked==true && op6.checked==true && dias2>0){
+                        resp.innerHTML=` FORD EDGE / MOTOR: 3.5 GASOL / ANO : 2017 / CONSUMO : 7 KM/L / CAMBIO: AUTO / AR+DIR+VID <br> `
+                        img.src = "img/suv2.png"
+                        resp.innerHTML += `(O valor da sua diaria é: [300.00] R$ ).<br> Portanto sua conta final será : [${conta2}.00] R$ `
+                    }
+                    else if(op3.checked==true && op6.checked==true && dias2>0){
+                        resp.innerHTML=` EQUINOX  / MOTOR: 1.5 TURBO GASOL / ANO : 2020 / CONSUMO : 9 KM/L / CAMBIO: AUTO / AR+DIR+VID <br> `
+                        img.src = "img/suv3.png"
+                        resp.innerHTML += `(O valor da sua diaria é: [300.00] R$ ).<br> Portanto sua conta final será : [${conta2}.00] R$ `
+                    }
+                    else if(op4.checked==true && op6.checked==true && dias2>0){
+                        resp.innerHTML=` HONDA - CRV  / MOTOR: 1.5 TURBO GASOL / ANO : 2020 / CONSUMO : 9 KM/L / CAMBIO: AUTO / AR+DIR+VID <br> `
+                        img.src = "img/suv4.png"
+                        resp.innerHTML += `(O valor da sua diaria é: [300.00] R$ ).<br> Portanto sua conta final será : [${conta2}.00] R$ `
+                    }
+
+                    // hatch 
+                    else if(op1.checked==true && op7.checked==true && dias2>0){
+                        resp.innerHTML=` FIAT - UNO  / MOTOR: 1.0 FLEX / ANO : 2020 / CONSUMO : 12.5 KM/L / CAMBIO: MANUAL / AR+DIR+VID <br> `
+                        img.src = "img/hatch1.png"
+                        resp.innerHTML += `(O valor da sua diaria é: [100.00] R$ ).<br> Portanto sua conta final será : [${conta3}.00] R$ `
+                    }
+
+                    else if(op2.checked==true && op7.checked==true && dias2>0){
+                        resp.innerHTML=` FORD - FIESTA  / MOTOR: 1.6 FLEX / ANO : 2020 / CONSUMO : 12 KM/L / CAMBIO: MANUAL / AR+DIR+VID <br> `
+                        img.src = "img/hatch2.png"
+                        resp.innerHTML += `(O valor da sua diaria é: [100.00] R$ ).<br> Portanto sua conta final será : [${conta3}.00] R$ `
+                    }
+                    else if(op3.checked==true && op7.checked==true && dias2>0){
+                        resp.innerHTML=` ONIX LTZ  / MOTOR: 1.0 TURB FLEX / ANO : 2020 / CONSUMO : 10.5 KM/L / CAMBIO: AUTO / AR+DIR+VID <br> `
+                        img.src = "img/hatch3.png"
+                        resp.innerHTML += `(O valor da sua diaria é: [100.00] R$ ).<br> Portanto sua conta final será : [${conta3}.00] R$ `
+                    }
+                    else if(op4.checked==true && op7.checked==true && dias2>0){
+                        resp.innerHTML=` HONDA - FIT  / MOTOR: 1.5 FLEX / ANO : 2020 / CONSUMO : 9.5 KM/L / CAMBIO: AUTO / AR+DIR+VID <br> `
+                        img.src = "img/hatch4.png"
+                        resp.innerHTML += `(O valor da sua diaria é: [100.00] R$ ).<br> Portanto sua conta final será : [${conta3}.00] R$ `
+                    }
+
+                    else{
+                        resp.innerHTML=`VOCÊ NÃO SELECIONOU AS OPÇÕES  \u{1F609} \u{1F446}`
+                    }
+                    }
+                    
+                }
+           
+    </script>
+
+        
+</body>
+</html>

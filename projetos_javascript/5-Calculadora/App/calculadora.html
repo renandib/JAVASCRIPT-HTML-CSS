@@ -1,0 +1,88 @@
+<!DOCTYPE html>  
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> CALCULADORA </title>
+    <link rel="stylesheet" href="calculadora.css">
+
+    <!-- LINK DO YOUTUBE -- https://www.youtube.com/watch?v=uZORUg_ri7k&list=PLOqx8yEV2-l3ZtNu48bpcnUn_wqCuzmtp&index=5 -->
+</head>
+<body>
+    <header>
+        <h1> CALCULADORA </h1>
+    </header>
+
+    <section>
+        <div>
+            <p><strong> Numero 1:</strong>  
+            <input type="number" id="num1" placeholder="Digite o 1° valor " min="0">
+            </p>
+            <p><strong> Numero 2:</strong>
+            <input type="number" id="num2" placeholder="Digite o 2° valor " min="0">
+            </p>
+
+            <input type="button" id="botao" value=" Calcular " style="width: 80px;height: 40px;font-weight: bolder;background-color: cornflowerblue;" >
+            <input id="a" type="radio" name="opcao" value="somar"> Somar
+            <input id="b" type="radio" name="opcao" value="sub"> Subtrair
+            <input id="c" type="radio" name="opcao" value="mult"> Multiplicar<br>
+            <input id="d" type="radio" name="opcao" value="divi"> Dividir           
+        </div>
+            
+        <div>
+            <img src="img/tabuada.jpg" > 
+        </div>
+        <h3 id="resp"> O resultado da sua conta é : </h3>
+    </section>
+
+    <footer><br>&copy; CURSO DE JAVASCRIPT </footer>
+    <script>
+        window.addEventListener('load',comeca)
+            function comeca(){
+                let bot = document.querySelector("#botao")
+                bot.addEventListener('click',calc)
+                    function calc(){
+                    let num1=document.querySelector("#num1")
+                    let num2=Number(num1.value)
+
+                    let num3=document.querySelector("#num2")
+                    let num4 = Number(num3.value)
+                    
+                    let som = document.querySelector("#a")
+                    let sub = document.querySelector("#b")
+                    let mult = document.querySelector("#c")
+                    let div = document.querySelector("#d")
+
+
+                    let resp = document.querySelector("#resp")
+
+                if(som.checked==true){
+                    resp.innerHTML=`A soma de ${num2} + ${num4} = ${num2+num4} \u{1F60E}`
+
+                }
+                else if(sub.checked==true){
+                    resp.innerHTML=`A subtração de ${num2} - ${num4} = ${num2-num4} \u{1F60E}` 
+                }
+                else if(mult.checked==true){
+                    resp.innerHTML= `A multiplicação de ${num2} X ${num4} = ${num2*num4} \u{1F60E}`
+                }
+                else if(div.checked==true){
+                    resp.innerHTML= `A divisão de ${num2} / ${num4} = ${num2/num4} \u{1F60E}`
+                }
+
+                else {
+                    resp.innerHTML = `Você não selecionou uma opção ! \u{1F604} \u{1F61B}`
+                }
+            }
+                }
+            
+        
+
+
+
+    </script>
+
+        
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>  
+                    <!--como colocar emoji top > https://www.youtube.com/watch?v=nhMdFe3WwYc-->
+<html lang="pt-br"> <!--JOGO JOKENPOW -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>  JOKENPO </title>
+    <link rel="stylesheet" href="jokenpow.css">
+
+    <!-- LINK DO YOUTUBE -- https://www.youtube.com/watch?v=8knD9XYV-Fs&list=PLOqx8yEV2-l3ZtNu48bpcnUn_wqCuzmtp&index=10  -->
+</head>
+<body>
+    <header>
+        <h1> JOGO JOKENPO  </h1>
+    </header>
+
+    <section>
+        <div>
+            
+            <br><br>
+            <p><strong> ESCOLHA UMA OPÇÃO E JOGUE COM O PC  : </strong><br><br>
+            <input id="op1" type="radio" name="opcao" value="&#x1F44A ">&#x1F44A  Pedra<br>     <!-- OBS TENQ TER O MESMO NAME SE N ELE SELECIONA MAIS DE UMA AO MEMSO TEMPO-->
+            <input id="op2"  type="radio" name="opcao" value="papel"> &#x1F590 Papel
+            <input id="op3"  type="radio" name="opcao" value="tesoura"> &#x270C Tesoura
+            </p>
+
+            <input type="button" id="botao" value=" JOGAR " style="width: 80px;height: 40px;font-weight: bolder;background-color: cornflowerblue;" >
+            
+            
+            <br><br>          
+        </div>
+            
+        <div id="ok">
+            <img id="img" src="img/jogo.jpg"><br><br>
+            <p id="resp"> Descubra quem foi o vencedor ao clicar em jogar  (Boa Sorte)  </p>    
+        </div>
+        
+    </section>
+
+    <footer><br>&copy; CURSO DE JAVASCRIPT </footer>
+    <script>
+       window.addEventListener('load',comeca)
+            function comeca(){
+                
+                let bot = document.querySelector("#botao")
+
+                
+                bot.addEventListener('click',jogar)
+                    function jogar(){
+                    
+                        
+                    
+                    let op1 =document.querySelector("#op1")
+
+                    let op2 =document.querySelector("#op2")
+
+                    let op3 = document.querySelector("#op3")
+
+                    let img = document.querySelector("#img")
+
+                    let resp = document.querySelector("#resp")
+
+                    // CRIANDO UM SORTEIO ALEATORIO DE 0 ATÉ 3 PELO METODO <> MATH.FLOOR(MATH.RANDOM())
+                    let sorteio = Math.floor(Math.random() * 3) // LEMBRANDO Q EU ESTOU FAZENDO ISSO CONSIDERANDO A 1°OP = 0 / 2°OP = 1 / 3°OP = 2
+
+                        // VERIFICAR SE OS 3 RADIOS NÃO FOI SELECIONADO > TRATANDO ERROS 
+                    if(op1.checked==false && op2.checked==false && op3.checked==false){
+                        resp.innerHTML=`VOCÊ NÃO SELECIONOU AS OPÇÕES  \u{1F609} \u{1F446}`
+                        img.src = "img/jogo.jpg"
+                    }// jogo começa aqui > se ele ver q foi selecionado vai fazendo as outras opcões
+                    
+                    // agora vou fazer primeiro os empates dps eu faço os desempates
+                    else if((op1.checked==true && sorteio==0) || (op2.checked==true && sorteio==1) || (op3.checked==true && sorteio==2)){
+                        resp.innerHTML=`DEU EMPATE \u{1F604} \u{1F61C} !`
+                        img.src = "img/empate.jpg"
+                        
+                    }       // TESTANDO 1° OPCAO
+                    else if(op1.checked==true && sorteio==1){
+                        resp.innerHTML=`[ \u{1F466} Você ] escolheu ( PEDRA  \u{1F44A} ) <br><br><br> [ \u{1F4BB} PC ] escolheu  ( PAPEL \u{1F590} ) <br><br>PORTANTO VOCÊ PERDEU \u{1F937}`
+                        img.src = "img/papel.jpg"
+                    }
+                    else if(op1.checked==true && sorteio==2){
+                        resp.innerHTML=` [ \u{1F466} Você ] escolheu ( PEDRA  \u{1F44A} ) <br><br><br> [  \u{1F4BB} PC ] escolheu ( TESOURA \u{270C} ) <br><br>PORTANTO VOCÊ GANHOU \u{1F61D} `
+                        img.src = "img/pedra.jpg"
+                        
+                    }   // TESTANDO 2° OPCAO
+                    else if(op2.checked==true && sorteio==0){
+                        resp.innerHTML=` [ \u{1F466} Você ] escolheu ( PAPEL  \u{1F590} ) <br><br><br> [ \u{1F4BB} PC ] escolheu ( PEDRA \u{1F44A} ) <br><br>PORTANTO VOCÊ GANHOU \u{1F61D} `
+                        img.src = "img/papel.jpg"
+                    }
+                    else if(op2.checked==true && sorteio==2){
+                        resp.innerHTML=` [ \u{1F466} Você ] escolheu ( PAPEL  \u{1F590} ) <br><br><br> [ \u{1F4BB} PC ] escolheu ( TESOURA \u{270C} ) <br><br>PORTANTO VOCÊ PERDEU \u{1F937}`
+                        img.src = "img/tesoura.jpg"
+                    }
+                        // TESTANDO 3° OPCAO
+                    else if(op3.checked==true && sorteio==0){
+                        resp.innerHTML=` [ \u{1F466} Você ] escolheu ( TESOURA  \u{270C} ) <br><br><br> [ \u{1F4BB} PC ] escolheu ( PEDRA \u{1F44A} ) <br><br>PORTANTO VOCÊ PERDEU \u{1F937} `
+                        img.src = "img/pedra.jpg"
+                    }
+
+                    else if(op3.checked==true && sorteio==1){
+                        resp.innerHTML=` [ \u{1F466} Você ] escolheu ( TESOURA  \u{270C} ) <br><br><br> [ \u{1F4BB} PC ] escolheu ( PAPEL \u{1F590}) <br><br>PORTANTO VOCÊ GANHOU \u{1F61D} `
+                        img.src = "img/tesoura.jpg"
+                    }
+                    
+                   
+                    
+                    }
+                    
+                    
+                }
+            
+             // FAZER UM PROGRAMA DE BANDEIRAS DE PAISES > ESCOLHER FOTOS DE BANDEIRA E MANDAR  A PESSOA ESCOLHER APENAS UMA LETRA DO PAIS > CONTENDO 3 LETRAS      
+             // BASE > https://www.youtube.com/watch?v=BPc23Y97kSI
+    </script>
+
+        
+</body>
+</html>

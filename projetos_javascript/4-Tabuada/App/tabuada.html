@@ -1,0 +1,71 @@
+<!DOCTYPE html>  
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Tabuada </title>
+    <link rel="stylesheet" href="tabuada.css">
+
+    <!-- LINK DO YOUTUBE -- https://www.youtube.com/watch?v=aTvL-RR4PWQ&list=PLOqx8yEV2-l3ZtNu48bpcnUn_wqCuzmtp&index=4  -->
+</head>
+<body>
+    <header>
+        <h1> TABUADA </h1>
+    </header>
+
+    <section>
+        <div>
+            <form><strong> Numero :</strong>  
+            <input type="number" id="inicio" placeholder="Digite o valor da tabuada " min="0">
+            <input type="reset" id="btn2" value=" Limpar "> <!-- ESE BOTÃO APAGA OS INPUTS > POREM SO  FUNCIONA SE TIVER DENTRO DE UM FORMS-->
+            <input type="button" id="botao" value=" Calcular " style="width: 80px;height: 40px;font-weight: bolder;background-color: cornflowerblue;" >
+            
+            </form>
+        </div>
+
+        <div>
+            <img src="img/tabuada.jpg" > 
+            <select id="tabuada" size="10">
+            <option value="v1">  DIGITE UM N° E OBTENHA A TABUADA  </option> <!-- AQUI EU CONSIGO CRIAR OPCOES NO SELECT
+            <option value="v2"> valor 2 </option> -->
+            </select>
+        </div>
+    </section>
+
+    <footer><br>&copy; CURSO DE JAVASCRIPT </footer>
+
+    <script>
+        window.addEventListener('load',comeca)
+        function comeca(){
+            
+            let botao = document.querySelector("#botao")
+            botao.addEventListener('click',calcular)
+
+            function calcular(){
+                let numero = document.querySelector("#inicio")// pegando o input 
+                let tabuada = document.querySelector("#tabuada")  // pegando o select
+
+                if(numero.value.length == 0){   // 1° verifica se ta sendo digitado algo ou n > 
+                    alert("Você não digitou um n° valido! digite novamente")
+                }
+                else{
+                    let num = Number(numero.value)// pegando o valor do input e COMEÇANDO O PROGRAMA > lembrando q tenq transformar pra Number se n da erro
+
+                    // AGORA TEMOS Q MONTAR O LOOP PRA MONTAR A TABUADA > USAR FOR OU WHILE > VOU USAR WHILE POR ENQUANTO 
+                    tabuada.innerHTML=" " // tenho q deixar vazio > pra toda vez q ele for fazer um novo loop esteja vazio > sen ele acumula os valores
+                    let c = 1 
+                    while(c<=10){
+                        let item = document.createElement('option') // DENTRO DO SELECT > EU PRECISO CRIAR ELEMENTOS DO TIPO OPTION> PQ SÃO OPCOES DO SELECT > LEMBRAR DISSO
+                        item.text = `${num} X ${c} = ${num*c} ` // pegando o que tem dentro do texto do select e mostrando isso 
+                        tabuada.appendChild(item) // ADD UM elemento FILHO dentro da variavel tabuada > q eu chamei de select 
+                        c++
+                    }
+                    }
+                }
+            
+            }
+        
+    </script>    
+</body>
+</html>

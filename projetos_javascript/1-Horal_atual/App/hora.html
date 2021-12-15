@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> MOMENTO DO DIA</title>
+    <link rel="stylesheet" href="hora.css">
+    <!--LINK DO VIDEO YOUTUBE -- https://www.youtube.com/watch?v=W9I9Ztnm2uY&list=PLOqx8yEV2-l3ZtNu48bpcnUn_wqCuzmtp&index=1&t=1s -->
+</head>
+<body>
+    <header>
+        <h1>HORA ATUAL</h1>
+    </header>
+    <section>
+        <div>
+            <label>Coloque a hora e descubra a paisagem do dia ! <br><br></label>
+            <label><strong>Hora atual: </strong> </label>
+            <input type="number" id="hora"  placeholder=" Digite a hora atual(Use Apenas dois numeros)" style="width: 290px;">
+            <input type="button" id="botao" value="Verificar">
+           <p id="msg" style="color: red;"> </p> 
+        </div>
+        <div id="img">
+            <img id=imagem src="img/relogio.jpg">
+
+        </div>
+    </section>
+    <footer>
+        <p>&copy; Curso de Javascript </p>
+    </footer>
+    
+    <script> 
+        window.addEventListener('load',comeca)
+
+        function comeca(){
+
+            let botao = document.querySelector("#botao")
+            botao.addEventListener('click',ok)
+
+            function ok(){
+            let hora = document.querySelector("#hora")
+            let hora2 = Number(hora.value)
+
+            let msg = document.querySelector("#msg")
+            let img = document.querySelector("#imagem")
+            
+            if(hora2>23 || hora2<0 ){
+                alert `Você digitou um n° invalído por favor faça novamente `
+            }
+            else
+            
+                if (hora2>=0 && hora2 <12){
+                msg.innerHTML = ` Bom dia. A hora atual é :<strong> ${hora2} horas da manhã </strong> `
+                img.src = "img/manha.png"
+                document.body.style.backgroundImage = "url('img/manha1.jpeg')"
+
+                 }
+                else if(hora2>=12 && hora2 < 18){
+                msg.innerHTML = ` Boa tarde. A hora atual é:<strong> ${hora2} horas da tarde </strong> ` // boa tarde 
+                img.src = "img/tarde.png"
+                document.body.style.backgroundImage = "url('img/tarde1.jpeg')"
+        
+                }
+                else{
+                msg.innerHTML = ` Boa noite. A hora atual é:<strong> ${hora2} horas da noite </strong>`
+                img.src = "img/noite.png"
+                document.body.style.backgroundImage = "url('img/noite.jpeg')"
+                //boa noite
+                }
+
+        }
+        }
+    
+    </script>
+    
+
+</body>
+</html>
